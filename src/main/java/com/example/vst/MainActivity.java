@@ -43,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         ArrayListStages curStage = MainActivity.this.generator.curStage;
                         MainActivity.this.txtCurrentFrequency.setText(formatter.format(MainActivity.this.generator.frequency));
-                        MainActivity.this.txtFrStart.setText(Double.toString(curStage.frStart));
-                        MainActivity.this.txtFrEnd.setText(Double.toString(curStage.frEnd));
+                        MainActivity.this.txtFrStart.setText(formatter2.format(curStage.frStart));
+                        MainActivity.this.txtFrEnd.setText(formatter2.format(curStage.frEnd));
                         MainActivity.this.txtLvl.setText(Integer.toString(curStage.level));
-                        MainActivity.this.txtNextTime.setText(formatter2.format(MainActivity.this.generator.localTime));
-
+                        MainActivity.this.txtNextTime.setText(formatter2.format((13 - (MainActivity.this.generator.localTime  / 1000))));
                         MainActivity.this.uiUpdate();
                     }
                 },

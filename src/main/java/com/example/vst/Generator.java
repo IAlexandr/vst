@@ -24,7 +24,7 @@ public class Generator  extends AppCompatActivity {
     ArrayList<ArrayListStages> ALS;
     ArrayListStages curStage = new ArrayListStages(50, 60, 1);
     Thread t;
-    double lvlTime = 12000;
+    double lvlTime = 13000;
     long duration = 100;
     long localTime = 0;
 
@@ -136,6 +136,7 @@ public class Generator  extends AppCompatActivity {
     }
 
     void test () {
+        Generator.this.localTime = 0;
         double sumFr = Generator.this.curStage.frEnd - Generator.this.curStage.frStart;
         double intervalPart = lvlTime / duration;
         double frPart = sumFr / intervalPart;
