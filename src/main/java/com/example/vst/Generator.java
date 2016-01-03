@@ -24,7 +24,9 @@ public class Generator  extends AppCompatActivity {
     ArrayList<ArrayListStages> ALS;
     ArrayListStages curStage = new ArrayListStages(50, 60, 1);
     Thread t;
-
+    double lvlTime = 12000;
+    long duration = 100;
+    long localTime = 0;
 
     Generator(TextView curFr) {
         this.curFr = curFr;
@@ -75,8 +77,9 @@ public class Generator  extends AppCompatActivity {
         t.setPriority(10);
         t.start();
         this.audioTrack.play();
-        this.curStage = this.ALS.get(2);
+        this.curStage = this.ALS.get(0);
         this.frequency = this.curStage.frStart;
+        this.test();
     }
 
     public void AudioStop() {
@@ -85,7 +88,6 @@ public class Generator  extends AppCompatActivity {
     }
 
     double getFrequency () {
-        this.frequency += 1;
         return this.frequency;
     }
 
@@ -110,5 +112,33 @@ public class Generator  extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    void timer (final double frPart) {
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        Generator.this.frequency += frPart;
+                        Generator.this.localTime += duration;
+                        if (Generator.this.mPaused) {
+
+                        } else {
+                            if (Generator.this.frequency >= Generator.this.curStage.frEnd) {
+                                Generator.this.curStage = Generator.this.ALS.get(Generator.this.curStage.level);
+                                Generator.this.test();
+                            } else {
+                                Generator.this.timer(frPart);
+                            }
+                        }
+                    }
+                },
+                duration);
+    }
+
+    void test () {
+        double sumFr = Generator.this.curStage.frEnd - Generator.this.curStage.frStart;
+        double intervalPart = lvlTime / duration;
+        double frPart = sumFr / intervalPart;
+        this.timer(frPart);
     }
 }

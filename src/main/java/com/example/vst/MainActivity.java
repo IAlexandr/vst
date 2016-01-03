@@ -6,6 +6,7 @@ package com.example.vst;
         import android.widget.Button;
         import android.view.View;
         import com.example.vst.Generator;
+        import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
     boolean state = false;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtFrStart;
     TextView txtFrEnd;
     Generator generator;
+    DecimalFormat formatter = new DecimalFormat("#0.00");
+    DecimalFormat formatter2 = new DecimalFormat("#0");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
                 new Runnable() {
                     public void run() {
                         ArrayListStages curStage = MainActivity.this.generator.curStage;
-                        MainActivity.this.txtCurrentFrequency.setText(Double.toString(MainActivity.this.generator.frequency));
+                        MainActivity.this.txtCurrentFrequency.setText(formatter.format(MainActivity.this.generator.frequency));
                         MainActivity.this.txtFrStart.setText(Double.toString(curStage.frStart));
                         MainActivity.this.txtFrEnd.setText(Double.toString(curStage.frEnd));
                         MainActivity.this.txtLvl.setText(Integer.toString(curStage.level));
+                        MainActivity.this.txtNextTime.setText(formatter2.format(MainActivity.this.generator.localTime));
 
                         MainActivity.this.uiUpdate();
                     }
