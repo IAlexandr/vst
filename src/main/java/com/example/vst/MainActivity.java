@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     TextView txtFrStart;
     TextView txtFrEnd;
     Generator generator;
-    double fr = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.txtFrStart.setText(Double.toString(curStage.frStart));
                         MainActivity.this.txtFrEnd.setText(Double.toString(curStage.frEnd));
                         MainActivity.this.txtLvl.setText(Integer.toString(curStage.level));
-
 
                         MainActivity.this.uiUpdate();
                     }

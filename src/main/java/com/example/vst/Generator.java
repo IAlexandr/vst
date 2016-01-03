@@ -47,7 +47,6 @@ public class Generator  extends AppCompatActivity {
         for (int i = 0; i < ALS.size(); i++) {
             Log.d("Debugger","Index: " + i + " - Item level: " + ALS.get(i).level);
         }
-        //this.init();
     }
 
     void init () {
@@ -76,7 +75,6 @@ public class Generator  extends AppCompatActivity {
         t.setPriority(10);
         t.start();
         this.audioTrack.play();
-        //this.mPaused = false;
         this.curStage = this.ALS.get(2);
         this.frequency = this.curStage.frStart;
     }
@@ -84,15 +82,10 @@ public class Generator  extends AppCompatActivity {
     public void AudioStop() {
         this.audioTrack.stop();
         this.mPaused = true;
-        //this.mPaused = true;
     }
 
     double getFrequency () {
-        // TODO
-
-        //this.curFr.setText("5");
         this.frequency += 1;
-        //this.mact.uiUpdate();
         return this.frequency;
     }
 
