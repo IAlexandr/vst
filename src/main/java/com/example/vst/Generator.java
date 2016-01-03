@@ -24,9 +24,10 @@ public class Generator  extends AppCompatActivity {
     ArrayList<ArrayListStages> ALS;
     ArrayListStages curStage = new ArrayListStages(50, 60, 1);
     Thread t;
-    double lvlTime = 13000;
+    double lvlTime = 5000;
     long duration = 100;
     long localTime = 0;
+    boolean reverse = false;
 
     Generator(TextView curFr) {
         this.curFr = curFr;
@@ -113,21 +114,40 @@ public class Generator  extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        Generator.this.frequency += frPart;
+                        if (Generator.this.reverse) {
+                            Generator.this.frequency -= frPart;
+                        } else {
+                            Generator.this.frequency += frPart;
+                        }
                         Generator.this.localTime += duration;
                         if (Generator.this.mPaused) {
 
                         } else {
-                            if (Generator.this.frequency >= Generator.this.curStage.frEnd) {
-                                if (Generator.this.curStage.level != 13) {
-                                    Generator.this.curStage = Generator.this.ALS.get(Generator.this.curStage.level);
-                                    Generator.this.stageManager();
+                            if (!Generator.this.reverse) {
+                                if (Generator.this.frequency >= Generator.this.curStage.frEnd) {
+                                    if (Generator.this.curStage.level != 13) {
+                                        Generator.this.curStage = Generator.this.ALS.get(Generator.this.curStage.level);
+                                        Generator.this.stageManager();
+                                    } else {
+                                        Generator.this.reverse = true;
+                                        Generator.this.stageManager();
+                                    }
                                 } else {
-                                    Generator.this.AudioStop();
+                                    Generator.this.timer(frPart);
                                 }
                             } else {
-                                Generator.this.timer(frPart);
+                                if (Generator.this.frequency <= Generator.this.curStage.frStart) {
+                                    if (Generator.this.curStage.level != 1) {
+                                        Generator.this.curStage = Generator.this.ALS.get(Generator.this.curStage.level - 2);
+                                        Generator.this.stageManager();
+                                    } else {
+                                        Generator.this.AudioStop();
+                                    }
+                                } else {
+                                    Generator.this.timer(frPart);
+                                }
                             }
+
                         }
                     }
                 },

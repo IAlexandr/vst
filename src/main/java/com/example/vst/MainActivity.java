@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.txtFrStart.setText(formatter2.format(curStage.frStart));
                         MainActivity.this.txtFrEnd.setText(formatter2.format(curStage.frEnd));
                         MainActivity.this.txtLvl.setText(Integer.toString(curStage.level));
-                        MainActivity.this.txtNextTime.setText(formatter2.format((13 - (MainActivity.this.generator.localTime  / 1000))));
+                        MainActivity.this.txtNextTime.setText(formatter2.format(((MainActivity.this.generator.lvlTime - MainActivity.this.generator.localTime)  / 1000)));
                         MainActivity.this.uiUpdate();
                     }
                 },
