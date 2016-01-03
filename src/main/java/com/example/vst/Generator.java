@@ -25,7 +25,7 @@ public class Generator  extends AppCompatActivity {
     ArrayListStages curStage = new ArrayListStages(50, 60, 1);
     Thread t;
     double lvlTime = 13000;
-    long duration = 60;
+    long duration = 100;
     long localTime = 0;
     boolean reverse = false;
     int startStageIndex = 0;
