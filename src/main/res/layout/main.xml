@@ -27,7 +27,7 @@
         android:text="0.0"
         android:id="@+id/txtCurrentFrequency"
         style="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="@dimen/abc_action_button_min_width_overflow_material"
+        android:textSize="@dimen/abc_dropdownitem_icon_width"
         android:textStyle="bold"
         android:layout_gravity="left"
         android:layout_alignBottom="@+id/textView2"

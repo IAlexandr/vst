@@ -41,7 +41,7 @@ public class Generator  extends AppCompatActivity {
         ALS.add(new ArrayListStages(200, 300, 7));
         ALS.add(new ArrayListStages(300, 400, 8));
         ALS.add(new ArrayListStages(400, 600, 9));
-        ALS.add(new ArrayListStages(60, 800, 10));
+        ALS.add(new ArrayListStages(600, 800, 10));
         ALS.add(new ArrayListStages(800, 1000, 11));
         ALS.add(new ArrayListStages(1000, 1500, 12));
         ALS.add(new ArrayListStages(1500, 2000, 13));
@@ -79,7 +79,7 @@ public class Generator  extends AppCompatActivity {
         this.audioTrack.play();
         this.curStage = this.ALS.get(0);
         this.frequency = this.curStage.frStart;
-        this.test();
+        this.stageManager();
     }
 
     public void AudioStop() {
@@ -87,17 +87,12 @@ public class Generator  extends AppCompatActivity {
         this.mPaused = true;
     }
 
-    double getFrequency () {
-        return this.frequency;
-    }
-
     void build () {
-        double fr = this.getFrequency();
         double oldphase = this.phase;
         this.phase = 0.0d;
         for (int a = 0; a < this.size_in_shorts; a++) {
             this.location[a] = (short) ((int) (Math.sin(this.phase + oldphase) * 32767.0d));
-            this.phase = ((((((double) a) + 1.0d) * 2.0d) * 3.141592653589793d) * fr) / ((double) this.sample_rate);
+            this.phase = ((((((double) a) + 1.0d) * 2.0d) * 3.141592653589793d) * this.frequency) / ((double) this.sample_rate);
             if (this.phase > 6.283185307179586d) {
                 this.phase -= 6.283185307179586d;
             }
@@ -124,8 +119,12 @@ public class Generator  extends AppCompatActivity {
 
                         } else {
                             if (Generator.this.frequency >= Generator.this.curStage.frEnd) {
-                                Generator.this.curStage = Generator.this.ALS.get(Generator.this.curStage.level);
-                                Generator.this.test();
+                                if (Generator.this.curStage.level != 13) {
+                                    Generator.this.curStage = Generator.this.ALS.get(Generator.this.curStage.level);
+                                    Generator.this.stageManager();
+                                } else {
+                                    Generator.this.AudioStop();
+                                }
                             } else {
                                 Generator.this.timer(frPart);
                             }
@@ -135,7 +134,7 @@ public class Generator  extends AppCompatActivity {
                 duration);
     }
 
-    void test () {
+    void stageManager () {
         Generator.this.localTime = 0;
         double sumFr = Generator.this.curStage.frEnd - Generator.this.curStage.frStart;
         double intervalPart = lvlTime / duration;

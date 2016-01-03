@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.uiUpdate();
                     }
                 },
-                300);
+                100);
     }
 
     public void TestStateSwitch (View view) {
