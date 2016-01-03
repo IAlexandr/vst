@@ -25,9 +25,10 @@ public class Generator  extends AppCompatActivity {
     ArrayListStages curStage = new ArrayListStages(50, 60, 1);
     Thread t;
     double lvlTime = 13000;
-    long duration = 100;
+    long duration = 60;
     long localTime = 0;
     boolean reverse = false;
+    int startStageIndex = 0;
 
     Generator(TextView curFr) {
         this.curFr = curFr;
@@ -78,7 +79,7 @@ public class Generator  extends AppCompatActivity {
         t.setPriority(10);
         t.start();
         this.audioTrack.play();
-        this.curStage = this.ALS.get(0);
+        this.curStage = this.ALS.get(startStageIndex);
         this.frequency = this.curStage.frStart;
         this.stageManager();
     }

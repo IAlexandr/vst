@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.txtFrStart.setText(formatter2.format(curStage.frStart));
                         MainActivity.this.txtFrEnd.setText(formatter2.format(curStage.frEnd));
                         MainActivity.this.txtLvl.setText(Integer.toString(curStage.level));
+                        if (MainActivity.this.generator.reverse) {
+                            MainActivity.this.txtLvl.setTextColor(0xFFD11E1E);
+                        } else {
+                            MainActivity.this.txtLvl.setTextColor(0xFF29C02B);
+                        }
                         MainActivity.this.txtNextTime.setText(formatter2.format(((MainActivity.this.generator.lvlTime - MainActivity.this.generator.localTime)  / 1000)));
                         MainActivity.this.uiUpdate();
                     }
