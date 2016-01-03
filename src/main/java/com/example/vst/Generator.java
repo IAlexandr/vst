@@ -6,6 +6,7 @@ import com.example.vst.MainActivity;
 import android.media.AudioTrack;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Generator  extends AppCompatActivity {
@@ -29,9 +30,11 @@ public class Generator  extends AppCompatActivity {
     long localTime = 0;
     boolean reverse = false;
     int startStageIndex = 0;
+    EditText edtTxtTimeInterval;
 
-    Generator(TextView curFr) {
+    Generator(EditText edtTxtTimeInterval) {
         this.curFr = curFr;
+        this.edtTxtTimeInterval = edtTxtTimeInterval;
         ALS = new ArrayList<ArrayListStages>();
         // уровни
         ALS.add(new ArrayListStages(50, 60, 1));
@@ -65,6 +68,8 @@ public class Generator  extends AppCompatActivity {
 
     public void AudioPlay() {
         this.init();
+        String str = this.edtTxtTimeInterval.getText().toString();
+        this.lvlTime = 1000 * Double.valueOf(str);
         this.curStage = this.ALS.get(startStageIndex);
         this.frequency = this.curStage.frStart;
         reverse = false;

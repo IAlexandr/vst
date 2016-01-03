@@ -139,4 +139,24 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:id="@+id/textView6"
+        android:textSize="@dimen/abc_action_bar_progress_bar_size"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toRightOf="@+id/txtNextTime"
+        android:layout_toEndOf="@+id/txtNextTime" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtTxtTimeInterval"
+        android:text="13"
+        android:textSize="@dimen/abc_action_button_min_width_overflow_material"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

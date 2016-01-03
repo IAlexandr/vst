@@ -2,6 +2,7 @@ package com.example.vst;
 
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.widget.EditText;
         import android.widget.TextView;
         import android.widget.Button;
         import android.view.View;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         this.txtCurrentFrequency = (TextView) findViewById(R.id.txtCurrentFrequency);
         this.txtFrStart = (TextView) findViewById(R.id.txtFrStart);
         this.txtFrEnd = (TextView) findViewById(R.id.txtFrEnd);
-        generator = new Generator(this.txtCurrentFrequency);
+        generator = new Generator((EditText) findViewById(R.id.edtTxtTimeInterval));
         this.uiUpdate();
     }
 
