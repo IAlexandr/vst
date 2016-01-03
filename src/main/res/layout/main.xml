@@ -132,9 +132,9 @@
         android:layout_height="wrap_content"
         android:text="Нет датчика"
         android:id="@+id/textView4"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toRightOf="@+id/txtLvl"
-        android:layout_toEndOf="@+id/txtLvl"
-        android:textSize="@dimen/abc_dialog_padding_material"
-        android:textColor="#db3838" />
+        android:textSize="@dimen/abc_dialog_padding_top_material"
+        android:textColor="#db3838"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
